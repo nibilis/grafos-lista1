@@ -26,5 +26,10 @@ def test_directed_matrix_graph():
     input_graph = input_graph.graph_from_file(file_name)
     input_graph.show_min()
 
+    input_graph.remove_node(2)
+    input_graph.show_min()
+
+    print("Grafo do arquivo é completo:", input_graph.is_complete())
+
 if __name__ == "__main__":
     test_directed_matrix_graph()
