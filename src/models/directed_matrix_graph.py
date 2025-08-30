@@ -1,9 +1,9 @@
 import os
+from src.models.matrix_graph import MatrixGraph
 
-class DirectedMatrixGraph:
+class DirectedMatrixGraph(MatrixGraph):
     def __init__(self, nodes = 0):
-        self.nodes = nodes
-        self.edges = 0
+        super().__init__(nodes)
         self.adjacency_matrix = [[0 for i in range(nodes)] for j in range(nodes)]
 
     # Exercicio 7
@@ -56,39 +56,6 @@ class DirectedMatrixGraph:
         if self.adjacency_matrix[v][w] == 1:
             self.adjacency_matrix[v][w] = 0
             self.edges-=1
-
-	# Apresenta o Grafo contendo
-	# número de vértices, arestas
-	# e a matriz de adjacência obtida	
-    def show(self):
-        print(f"\n n: {self.nodes:2d} ", end="")
-        print(f"m: {self.edges:2d}\n")
-        for i in range(self.nodes):
-            for w in range(self.nodes):
-                if self.adjacency_matrix[i][w] == 1:
-                    print(f"Adj[{i:2d},{w:2d}] = 1 ", end="") 
-                else:
-                    print(f"Adj[{i:2d},{w:2d}] = 0 ", end="")
-            print("\n")
-        print("\nfim da impressao do grafo." )
-
-
-	# Apresenta o Grafo contendo
-	# número de vértices, arestas
-	# e a matriz de adjacência obtida 
-    # Apresentando apenas os valores 0 ou 1	
-    def show_min(self):
-        print(f"\n n: {self.nodes:2d} ", end="")
-        print(f"m: {self.edges:2d}\n")
-        for i in range(self.nodes):
-            for w in range(self.nodes):
-                if self.adjacency_matrix[i][w] == 1:
-                    print(" 1 ", end="") 
-                else:
-                    print(" 0 ", end="")
-            print("\n")
-        print("\nfim da impressao do grafo." )
-
     
     # Exercicio 1
     def in_degree(self, v):
@@ -129,4 +96,5 @@ class DirectedMatrixGraph:
                 if self.adjacency_matrix[i][j] != self.adjacency_matrix[j][i]:
                     return False
         return True
+    
     
