@@ -58,5 +58,16 @@ class MatrixGraph:
                 complementary_graph.adjacency_matrix[i][j] = 0
 
         return complementary_graph
+    
+    # Exercicio 23
+    def convert_to_list(self):
+        from src.models2.list_graph import ListGraph
+        list_graph = ListGraph(self.nodes)
+        list_graph.edges = self.edges
+        for i in range(self.nodes):
+            for j in range(self.nodes):
+                if self.adjacency_matrix[i][j] == 1:
+                    list_graph.adjacency_list[i].append(j)
+        return list_graph
 
     

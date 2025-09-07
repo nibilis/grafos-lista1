@@ -97,4 +97,84 @@ class DirectedMatrixGraph(MatrixGraph):
                     return False
         return True
     
+
+    # Exercicio 16
+    def conexidade(self):
+        categoria = "C3"
+        if not self.fconexo():
+            categoria = "C2"
+            if not self.sfconexo():
+                categoria = "C0"
+                if not self.desconexo():
+                    categoria = "C1"
+        return categoria
+            
+
+
+    def fconexo(self):
+        if self.in_degree(0) == 0 or self.out_degree(0) == 0:
+            return False
+        
+        #inicia em um vertice qualquer
+        #encontrar todos os vertices atingiveis a partir dele
+        direto = self.transitivoDireto(0) #ao final, direto terá todos os vertices atingiveis a partir do vertice 0
+        indireto = self.transitivoInverso(0) #ao final, indireto terá todos os vertices que atingem o vertice 0
+        for i in range(self.nodes):
+            if len(direto) != self.nodes or len(indireto) != self.nodes:
+                return False
+        return True
+
+    def sfconexo(self):
+        y = []
+        for i in range(self.nodes):
+            direto = self.transitivoDireto(i)
+            indireto = self.transitivoInverso(i)
+            w = list(set(direto).union(set(indireto))) # R+(i) U R-(i)
+            if len(w) != self.nodes:
+                return False
+            else:
+                if len(direto) == self.nodes or len(indireto) == self.nodes:
+                    y.append(i)
+                else:
+                    return False
+        if len(y) == self.nodes:
+            return True
+        return False
+    
+    def desconexo(self):
+        for i in range(self.nodes):
+            w = list(set(self.transitivoDireto(i)).union(set(self.transitivoInverso(i))))
+            if len(w) == self.nodes:
+                return False
+        return True
+                
+        
+    def transitivoDireto(self, v):
+        visited = [False] * self.nodes
+        visited[v] = True
+        atingiveis = [v]
+        self._transitivoDireto(v, visited, atingiveis)
+        return atingiveis
+    
+    def _transitivoDireto(self, v, visited, atingiveis):
+        for i in range(self.nodes):
+            if self.adjacency_matrix[v][i] == 1 and not visited[i]:
+                visited[i] = True
+                atingiveis.append(i)
+                self._transitivoDireto(i, visited, atingiveis)
+
+    def transitivoInverso(self, v):
+        visited = [False] * self.nodes
+        visited[v] = True
+        atingiveis = [v]
+        self._transitivoInverso(v, visited, atingiveis)
+        return atingiveis
+    
+    def _transitivoInverso(self, v, visited, atingiveis):
+        for i in range(self.nodes):
+            if self.adjacency_matrix[i][v] == 1 and not visited[i]:
+                visited[i] = True
+                atingiveis.append(i)
+                self._transitivoInverso(i, visited, atingiveis)
+    
     
