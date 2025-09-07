@@ -1,4 +1,4 @@
-from src.models2.directed_list_graph import DirectedListGraph
+from src.models.list_graph.directed_list_graph import DirectedListGraph
 
 def test_directed_list_graph():
     g = DirectedListGraph(4)

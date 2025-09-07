@@ -1,4 +1,4 @@
-from src.models.matrix_graph import MatrixGraph 
+from src.models.matrix_graph.matrix_graph import MatrixGraph 
 
 class LabeledDirectedMatrixGraph(MatrixGraph):
     def __init__(self, nodes = 0):
@@ -15,3 +15,5 @@ class LabeledDirectedMatrixGraph(MatrixGraph):
         if self.adjacency_matrix[origin_node][destiny_node] != float('inf'):
             self.adjacency_matrix[origin_node][destiny_node] = float('inf')
             self.edges += 1
+
+
