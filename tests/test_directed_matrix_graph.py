@@ -31,5 +31,18 @@ def test_directed_matrix_graph():
 
     print("Grafo do arquivo é completo:", input_graph.is_complete())
 
+    print("Grafo é fortemente conexo:", input_graph.fconexo())
+
+    g2 = DirectedMatrixGraph(3)
+    g2.insert_a(0, 1)
+    g2.insert_a(1, 2)
+    g2.insert_a(2, 0)
+
+    print("Grafo g2 tem o grau de conexidade: ", g2.conexidade())
+
+    g2.convert_to_list().show()
+
+    
+
 if __name__ == "__main__":
     test_directed_matrix_graph()
