@@ -1,4 +1,4 @@
-from src.models.undirected_matrix_graph import UndirectedMatrixGraph
+from src.models.matrix_graph.undirected_matrix_graph import UndirectedMatrixGraph
 
 def test_undirected_matrix_graph():
     graph = UndirectedMatrixGraph(4)

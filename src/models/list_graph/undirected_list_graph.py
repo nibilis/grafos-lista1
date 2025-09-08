@@ -1,5 +1,5 @@
-from src.models2.list_graph import ListGraph
-from src.models.undirected_matrix_graph import UndirectedMatrixGraph
+from src.models.list_graph.list_graph import ListGraph
+from src.models.matrix_graph.undirected_matrix_graph import UndirectedMatrixGraph
 
 class UndirectedListGraph(ListGraph):
     def __init__ (self, nodes):

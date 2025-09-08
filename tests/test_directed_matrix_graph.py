@@ -1,4 +1,4 @@
-from src.models.directed_matrix_graph import DirectedMatrixGraph
+from src.models.matrix_graph.directed_matrix_graph import DirectedMatrixGraph
 
 def test_directed_matrix_graph():
     g3 = DirectedMatrixGraph(8)

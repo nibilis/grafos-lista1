@@ -61,7 +61,7 @@ class MatrixGraph:
     
     # Exercicio 23
     def convert_to_list(self):
-        from src.models2.list_graph import ListGraph
+        from src.models.list_graph.list_graph import ListGraph
         list_graph = ListGraph(self.nodes)
         list_graph.edges = self.edges
         for i in range(self.nodes):

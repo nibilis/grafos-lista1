@@ -1,4 +1,4 @@
-from src.models.labeled_directed_matrix_graph import LabeledDirectedMatrixGraph
+from src.models.matrix_graph.labeled_directed_matrix_graph import LabeledDirectedMatrixGraph
 
 def test_labeled_directed_matrix_graph():
     graph = LabeledDirectedMatrixGraph(4)

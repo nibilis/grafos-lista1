@@ -1,4 +1,4 @@
-from src.models.matrix_graph import MatrixGraph 
+from src.models.matrix_graph.matrix_graph import MatrixGraph 
 
 class LabeledDirectedMatrixGraph(MatrixGraph):
     def __init__(self, nodes = 0):

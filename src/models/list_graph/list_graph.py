@@ -24,7 +24,7 @@ class ListGraph():
     
     # Exercicio 23
     def convert_to_matrix(self):
-        from src.models.matrix_graph import MatrixGraph
+        from src.models.matrix_graph.matrix_graph import MatrixGraph
         matrix_graph = MatrixGraph(self.nodes)
         matrix_graph.edges = self.edges
         for i in range(self.nodes):

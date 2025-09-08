@@ -1,5 +1,5 @@
 import os
-from src.models2.list_graph import ListGraph
+from src.models.list_graph.list_graph import ListGraph
 
 class DirectedListGraph(ListGraph):
     def __init__(self, nodes = 0):
@@ -33,7 +33,7 @@ class DirectedListGraph(ListGraph):
     
     # Exercicio 23
     def convert_to_matrix(self):
-        from src.models.directed_matrix_graph import DirectedMatrixGraph
+        from src.models.matrix_graph.directed_matrix_graph import DirectedMatrixGraph
         matrix_graph = DirectedMatrixGraph(self.nodes)
         matrix_graph.edges = self.edges
         for i in range(self.nodes):
