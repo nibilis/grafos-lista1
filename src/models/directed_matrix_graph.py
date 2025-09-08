@@ -97,11 +97,34 @@ class DirectedMatrixGraph(MatrixGraph):
                     return False
         return True
     
+    def reduce_graph(self):
+        all_scc = []
+        remaining_nodes = set(range(self.nodes))
+        while remaining_nodes:
+            node = remaining_nodes.pop()
+            scc = set(self.transitivoDireto(node)).intersection(set(self.transitivoInverso(node)))
+            all_scc.append(scc)
+            remaining_nodes.difference_update(scc)
+        
+        reduced = DirectedMatrixGraph(len(all_scc))
+        for i in range(len(all_scc)):
+            for j in range(len(all_scc)):
+                if i != j:
+                    for v in all_scc[i]:
+                        for w in all_scc[j]:
+                            if self.adjacency_matrix[v][w] == 1:
+                                reduced.insert_a(i, j)
+                                break
+                        else:
+                            continue
+                        break
+
+        return reduced
 
     # Exercicio 16
     def conexidade(self):
         categoria = "C3"
-        if not self.fconexo():
+        if not self.grafoFconexo():
             categoria = "C2"
             if not self.sfconexo():
                 categoria = "C0"
@@ -109,16 +132,17 @@ class DirectedMatrixGraph(MatrixGraph):
                     categoria = "C1"
         return categoria
             
+    def grafoFconexo(self):
+        return self.fconexo(0)
 
-
-    def fconexo(self):
-        if self.in_degree(0) == 0 or self.out_degree(0) == 0:
+    def fconexo(self, node):
+        if self.in_degree(node) == 0 or self.out_degree(node) == 0:
             return False
         
         #inicia em um vertice qualquer
         #encontrar todos os vertices atingiveis a partir dele
-        direto = self.transitivoDireto(0) #ao final, direto terá todos os vertices atingiveis a partir do vertice 0
-        indireto = self.transitivoInverso(0) #ao final, indireto terá todos os vertices que atingem o vertice 0
+        direto = self.transitivoDireto(node) #ao final, direto terá todos os vertices atingiveis a partir do vertice 0
+        indireto = self.transitivoInverso(node) #ao final, indireto terá todos os vertices que atingem o vertice 0
         for i in range(self.nodes):
             if len(direto) != self.nodes or len(indireto) != self.nodes:
                 return False
