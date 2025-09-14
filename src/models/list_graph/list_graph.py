@@ -9,8 +9,8 @@ class ListGraph():
         print(f"m: {self.edges:2d}\n")
         for i in range(self.nodes):
             print(f"{i} -> ", end="")
-            for v in self.adjacency_list[i]:
-                print(f"{v} -> ", end="")
+            for j in range(len(self.adjacency_list[i])):
+                print(f"{self.adjacency_list[i][j]} -> ", end="")
             print("None")
 
     # Exercicio 22
@@ -24,7 +24,7 @@ class ListGraph():
     
     # Exercicio 23
     def convert_to_matrix(self):
-        from src.models.matrix_graph import MatrixGraph
+        from src.models.matrix_graph.matrix_graph import MatrixGraph
         matrix_graph = MatrixGraph(self.nodes)
         matrix_graph.edges = self.edges
         for i in range(self.nodes):
@@ -51,5 +51,16 @@ class ListGraph():
                 if i in self.adjacency_list[j] and j not in self.adjacency_list[i]:
                     return False
         return True
+    
+
+
+    # Exercicio 24
+    def invert_list(self):
+        inverted_graph = ListGraph(self.nodes)
+        inverted_graph.edges = self.edges
+        for i in range(self.nodes):
+            for v in reversed(self.adjacency_list[i]):
+                inverted_graph.adjacency_list[i].append(v)
+        return inverted_graph
 
         
